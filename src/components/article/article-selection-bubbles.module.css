@@ -1,0 +1,9 @@
+.articleButton {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem !important;
+}
+
+.name {
+  margin-bottom: 0.5rem;
+}

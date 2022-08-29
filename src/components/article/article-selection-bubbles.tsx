@@ -4,9 +4,10 @@ import { usePopularArticles } from '../../store';
 import { Article, startLoadingArticles } from '../../store/reducers';
 import { Currency } from '../currency';
 import { ArticleValidator } from './validator';
-import { Flex, Input, CancelButton, Button } from '../../bricks';
+import { Flex, Input, CancelButton, Button, CardGrid } from '../../bricks';
 import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
+import styles from './article-selection-bubbles.module.css';
 
 interface Props {
   userId: string;
@@ -35,7 +36,7 @@ export const ArticleSelectionBubbles = (props: Props) => {
         />
         <CancelButton margin="0 0 0 1rem" onClick={props.onCancel} />
       </Flex>
-      <Flex margin="2rem 0 0 0" flexWrap="wrap" justifyContent="center">
+      <CardGrid>
         {items
           .filter(
             (item) =>
@@ -49,6 +50,7 @@ export const ArticleSelectionBubbles = (props: Props) => {
               value={item.amount}
               render={(isValid) => (
                 <Button
+                  className={styles.articleButton}
                   primary
                   disabled={!isValid}
                   onClick={() => {
@@ -56,15 +58,14 @@ export const ArticleSelectionBubbles = (props: Props) => {
                       props.onSelect(item);
                     }
                   }}
-                  padding="0.5rem"
-                  margin="0.3rem"
                 >
-                  {item.name} | <Currency hidePlusSign value={item.amount} />
+                  <div className={styles.name}>{item.name}</div>
+                  <Currency hidePlusSign value={item.amount} />
                 </Button>
               )}
             />
           ))}
-      </Flex>
+      </CardGrid>
     </div>
   );
 };
