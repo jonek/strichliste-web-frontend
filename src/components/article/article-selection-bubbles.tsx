@@ -14,7 +14,7 @@ interface Props {
   onCancel(): void;
 }
 
-const ARTICLE_BUBBLE_LIMIT = 10;
+const ARTICLE_BUBBLE_LIMIT = 20;
 export const ArticleSelectionBubbles = (props: Props) => {
   const items = usePopularArticles();
   const dispatch = useDispatch();
